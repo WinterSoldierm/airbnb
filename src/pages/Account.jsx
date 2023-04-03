@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { Navigate, Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Place from "./Place";
 const Account = () => {
   const [redirect, setRedirect] = useState(null);
   let { subpage } = useParams();
@@ -41,7 +42,9 @@ const Account = () => {
   }
   return (
     <div>
-      Account for {user?.name}
+      <div className="flex justify-center mt-4 mb-4">
+        <span className="">Account for {user?.name}</span>
+      </div>
       <nav className="w-full flex justify-center mt-8 mb-8 gap-2">
         <Link className={linkClasses("profile")} to={"/account"}>
           <svg
@@ -103,6 +106,7 @@ const Account = () => {
           </button>
         </div>
       )}
+      {subpage === "places" && <Place />}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
 import "./App.css";
 import Header from "./components/Header";
 import Login from "./pages/Login";
@@ -12,6 +12,7 @@ import Account from "./pages/Account";
 axios.defaults.baseURL = "http://127.0.0.1:4000";
 axios.defaults.withCredentials = true; // for cookies
 function App() {
+  
   return (
     <div>
       <UserContextProvider>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
             <Route path="/account/:subpage?" element={<Account />} />
+            <Route path="/account/:subpage/:action" element={<Account />} />
           </Route>
         </Routes>
       </UserContextProvider>

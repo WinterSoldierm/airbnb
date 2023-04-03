@@ -4,14 +4,15 @@
 
 input[type="text"],
 [type="password"],
-[type="email"] {
+[type="email"], 
+textarea {
   @apply w-full border my-1 py-3 rounded-2xl;
 }
 
-button{
-    @apply bg-gray-300 
+button {
+  @apply bg-gray-300;
 }
-button.primary{
-    background-color: '#f5385d';
-    @apply bg-primary p-2 w-full text-white rounded-2xl
+button.primary {
+  background-color: "#f5385d";
+  @apply bg-primary p-2 w-full text-white rounded-2xl;
 }
