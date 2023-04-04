@@ -9,10 +9,11 @@ import Register from "./pages/Register";
 import axios from "axios";
 import { UserContextProvider } from "./context/UserContext";
 import Account from "./pages/Account";
+import Place from "./pages/Place";
+import PlacesForm from "./pages/PlacesForm";
 axios.defaults.baseURL = "http://127.0.0.1:4000";
 axios.defaults.withCredentials = true; // for cookies
 function App() {
-  
   return (
     <div>
       <UserContextProvider>
@@ -21,8 +22,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/Register" element={<Register />} />
-            <Route path="/account/:subpage?" element={<Account />} />
-            <Route path="/account/:subpage/:action" element={<Account />} />
+            <Route path="/account" element={<Account />} />
+            <Route path="/account/places" element={<Place />} />
+            <Route path="/account/places/new" element={<PlacesForm />} />
           </Route>
         </Routes>
       </UserContextProvider>

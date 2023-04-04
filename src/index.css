@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 input[type="text"],
-[type="password"],
-[type="email"], 
+input[type="password"],
+input[type="email"],
+input[type="number"],
 textarea {
   @apply w-full border my-1 py-3 rounded-2xl;
 }
