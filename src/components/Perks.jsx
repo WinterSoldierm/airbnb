@@ -15,7 +15,12 @@ const Perks = ({ selected, onChange }) => {
     <div>
       <div className="grid mt-4 gap-2   grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
         <label className="border p-4 flex rounded-2xl gap-2 item-center cursor-pointer ">
-          <input type="checkbox" name="Wifi" onChange={handleCheckBoxClick} />
+          <input
+            type="checkbox"
+            checked={selected.includes("Wifi")}
+            name="Wifi"
+            onChange={handleCheckBoxClick}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -36,6 +41,7 @@ const Perks = ({ selected, onChange }) => {
           <input
             type="checkbox"
             name="Parking"
+            checked={selected.includes("Parking")}
             onChange={handleCheckBoxClick}
           />
           <svg
@@ -58,6 +64,7 @@ const Perks = ({ selected, onChange }) => {
           <input
             type="checkbox"
             name="Pets Allowed"
+            checked={selected.includes("Pets Allowed")}
             onChange={handleCheckBoxClick}
           />
           <svg
@@ -77,7 +84,12 @@ const Perks = ({ selected, onChange }) => {
           <span className="">Pets Allowed</span>
         </label>
         <label className="border p-4 flex rounded-2xl gap-2 item-center cursor-pointer ">
-          <input type="checkbox" name="TV" onChange={handleCheckBoxClick} />
+          <input
+            type="checkbox"
+            name="TV"
+            checked={selected.includes("TV")}
+            onChange={handleCheckBoxClick}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -95,7 +107,12 @@ const Perks = ({ selected, onChange }) => {
           <span className="">TV</span>
         </label>
         <label className="border p-4 flex rounded-2xl gap-2 item-center cursor-pointer ">
-          <input type="checkbox" name="Locker" onChange={handleCheckBoxClick} />
+          <input
+            type="checkbox"
+            name="Locker"
+            checked={selected.includes("Locker")}
+            onChange={handleCheckBoxClick}
+          />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

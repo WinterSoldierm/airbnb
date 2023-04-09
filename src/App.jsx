@@ -11,6 +11,8 @@ import { UserContextProvider } from "./context/UserContext";
 import Account from "./pages/Account";
 import Place from "./pages/Place";
 import PlacesForm from "./pages/PlacesForm";
+import Booking from "./pages/Booking";
+import SinglePlace from "./components/SinglePlace";
 axios.defaults.baseURL = "http://127.0.0.1:4000";
 axios.defaults.withCredentials = true; // for cookies
 function App() {
@@ -25,6 +27,11 @@ function App() {
             <Route path="/account" element={<Account />} />
             <Route path="/account/places" element={<Place />} />
             <Route path="/account/places/new" element={<PlacesForm />} />
+            <Route path="/account/places/:id" element={<PlacesForm />} />
+            {/* <Route path="/places/:id" element={<SinglePlace />} /> */}
+
+            <Route path="/account/booking" element={<Booking />} />
+            <Route path="/account/bookings/:id" element={<Booking />} />
           </Route>
         </Routes>
       </UserContextProvider>

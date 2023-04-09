@@ -1,20 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PhotoUploader from "../components/PhotoUploader";
 import axios from "axios";
 import Perks from "../components/Perks";
 import NavigationButtons from "../components/NavigationButtons";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 const PlacesForm = () => {
+  const { id } = useParams();
+  console.log({ id });
+
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [addedPhotos, setAddedPhotos] = useState([]);
-  const [desc, setDesc] = useState("");
+  const [description, setDesc] = useState("");
   const [perks, setPerks] = useState([]);
   const [extraInfo, setExtraInfo] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [maxGuest, setMaxGuest] = useState(1);
   const [redirect, setRedirect] = useState(false);
+  // const [price, setPrice] = useState(100);
+
+  useEffect(() => {
+    if (!id) return;
+
+    axios.get("/places/" + id).then((response) => {
+      const { data } = response;
+      setTitle(data.title);
+      setAddress(data.address);
+      setAddedPhotos(data.photos);
+      setDesc(data.description);
+      setPerks(data.perks);
+      setExtraInfo(data.extraInfo);
+      setCheckIn(data.checkIn);
+      setCheckOut(data.checkOut);
+      setMaxGuest(data.maxGuests);
+    });
+  }, [id]);
 
   async function addNewPlace(ev) {
     ev.preventDefault();
@@ -23,7 +44,7 @@ const PlacesForm = () => {
       title,
       address,
       addedPhotos,
-      desc,
+      description,
       perks,
       extraInfo,
       checkIn,
@@ -33,6 +54,33 @@ const PlacesForm = () => {
     setRedirect(true);
   }
 
+  async function savePlace(ev) {
+    ev.preventDefault();
+    const placeData = {
+      title,
+      address,
+      addedPhotos,
+      description,
+      perks,
+      extraInfo,
+      checkIn,
+      checkOut,
+      maxGuest,
+    };
+    if (id) {
+      // update
+      await axios.put("/places", {
+        id,
+        ...placeData,
+      });
+      setRedirect(true);
+    } else {
+      // new place
+      await axios.post("/places", placeData);
+      setRedirect(true);
+    }
+  }
+
   if (redirect) return <Navigate to={"/account/places"} />;
 
   return (
@@ -40,7 +88,7 @@ const PlacesForm = () => {
       <NavigationButtons />
       <div className="text-center mt-6">My Place</div>
       <div className="">
-        <form onSubmit={addNewPlace}>
+        <form onSubmit={savePlace}>
           <h2 className="text-xl mt-4">Title</h2>
           <p className="text-gray-300 text-sm">
             Title for your place should be short and catchy
@@ -67,7 +115,7 @@ const PlacesForm = () => {
           <textarea
             type="text"
             placeholder="Decription"
-            value={desc}
+            value={description}
             onChange={(e) => setDesc(e.target.value)}
           />
           <h2 className="text-2xl mt-4">Perks</h2>
@@ -121,6 +169,15 @@ const PlacesForm = () => {
               />
             </div>
           </div>
+          {/* <div>
+            <h3 className="mt-2 -mb-1">Price per night</h3>
+            <input
+              type="number"
+              value={price}
+              onChange={(ev) => setPrice(ev.target.value)}
+            />
+          </div> */}
+
           <button className="primary p-4 my-4">Save</button>
         </form>
       </div>
