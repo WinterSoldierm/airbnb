@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import BookingWidget from "./BookingWidget";
-import AddressLink from "./AddressLink";
-import PhotoGallery from "./PhotoGallery";
-import NavigationButtons from "./NavigationButtons";
+import BookingWidget from "../components/BookingWidget";
+import AddressLink from "../components/AddressLink";
+import PhotoGallery from "../components/PhotoGallery";
 
 const SinglePlace = () => {
   const { id } = useParams();
@@ -22,8 +21,7 @@ const SinglePlace = () => {
   if (!place) return "";
 
   return (
-    <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8">
-      <NavigationButtons />
+    <div className="mt-4-mx-8 px-8 pt-8">
       <h1 className="text-3xl">{place.title}</h1>
       <AddressLink>{place.address}</AddressLink>
       <PhotoGallery place={place} />

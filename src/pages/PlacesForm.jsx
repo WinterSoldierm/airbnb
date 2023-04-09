@@ -18,7 +18,7 @@ const PlacesForm = () => {
   const [checkOut, setCheckOut] = useState("");
   const [maxGuest, setMaxGuest] = useState(1);
   const [redirect, setRedirect] = useState(false);
-  // const [price, setPrice] = useState(100);
+  const [price, setPrice] = useState(0);
 
   useEffect(() => {
     if (!id) return;
@@ -34,6 +34,7 @@ const PlacesForm = () => {
       setCheckIn(data.checkIn);
       setCheckOut(data.checkOut);
       setMaxGuest(data.maxGuests);
+      setPrice(data.price);
     });
   }, [id]);
 
@@ -50,6 +51,7 @@ const PlacesForm = () => {
       checkIn,
       checkOut,
       maxGuest,
+      price,
     });
     setRedirect(true);
   }
@@ -66,6 +68,7 @@ const PlacesForm = () => {
       checkIn,
       checkOut,
       maxGuest,
+      price,
     };
     if (id) {
       // update
@@ -140,7 +143,8 @@ const PlacesForm = () => {
             Add check in & check out time, remember to have some time window for
             cleaning the roome between guest{" "}
           </p>
-          <div className="grid sm:grid-cols-3 gap-2">
+
+          <div className="grid sm:grid-cols-2 md:grid-col-4 lg:grid-cols-6 gap-2">
             <div className="">
               <h3 className="mt-2 -mb-1">Check in time</h3>
               <input
@@ -168,15 +172,16 @@ const PlacesForm = () => {
                 onChange={(e) => setMaxGuest(e.target.value)}
               />
             </div>
+            <div>
+              <h3 className="mt-2 -mb-1">Price per night</h3>
+              <input
+                type="number"
+                placeholder="price per night"
+                value={price}
+                onChange={(ev) => setPrice(ev.target.value)}
+              />
+            </div>
           </div>
-          {/* <div>
-            <h3 className="mt-2 -mb-1">Price per night</h3>
-            <input
-              type="number"
-              value={price}
-              onChange={(ev) => setPrice(ev.target.value)}
-            />
-          </div> */}
 
           <button className="primary p-4 my-4">Save</button>
         </form>

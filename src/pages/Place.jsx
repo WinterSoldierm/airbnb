@@ -39,7 +39,7 @@ const Place = () => {
         </Link>
       </div>
 
-      <div className="mt-4">
+      <div className="">
         {places?.length > 0 &&
           places?.map((place) => (
             <Link
