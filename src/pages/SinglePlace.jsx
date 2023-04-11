@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import BookingWidget from "../components/BookingWidget";
 import AddressLink from "../components/AddressLink";
 import PhotoGallery from "../components/PhotoGallery";
+import ReactLoading from "react-loading";
+import Loading from "../components/Loading";
 
 const SinglePlace = () => {
   const { id } = useParams();
@@ -18,10 +20,10 @@ const SinglePlace = () => {
     });
   }, [id]);
 
-  if (!place) return "";
+  if (!place) return "Loading...";
 
   return (
-    <div className="mt-4-mx-8 px-8 pt-8">
+    <div className="mt-4 bg-gray-50 -mx-8 px-8 pt-8">
       <h1 className="text-3xl">{place.title}</h1>
       <AddressLink>{place.address}</AddressLink>
       <PhotoGallery place={place} />
@@ -41,7 +43,7 @@ const SinglePlace = () => {
         </div>
       </div>
 
-      <div className="bg-white -mx-8 px-8 py-8 border-t">
+      <div className=" -mx-8 px-8 py-8 border-t">
         <div>
           <h2 className="font-semibold text-2xl">Extra Information</h2>
         </div>
