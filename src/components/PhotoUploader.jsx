@@ -71,7 +71,7 @@ const PhotoUploader = ({ addedPhotos, onChange }) => {
           addedPhotos.map((link) => (
             <div className="h-32 flex relative" key={link}>
               <Image
-                className="rounded-2xl w-full object-cover"
+                className="rounded-2xl w-full object-cover as"
                 src={link}
                 alt="Uploded Image"
               />
