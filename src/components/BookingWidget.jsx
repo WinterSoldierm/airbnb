@@ -58,6 +58,7 @@ const BookingWidget = ({ place }) => {
               <label>Check in:</label>
               <input
                 type="date"
+                placeholder="MM/DD/YYYY"
                 value={checkIn}
                 onChange={(ev) => setCheckIn(ev.target.value)}
               />
@@ -67,6 +68,7 @@ const BookingWidget = ({ place }) => {
               <input
                 type="date"
                 value={checkOut}
+                placeholder="MM/DD/YYYY"
                 onChange={(ev) => setCheckOut(ev.target.value)}
               />
             </div>
